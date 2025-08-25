@@ -15,10 +15,24 @@ Main file named as 'run_grid_tied.m'.
 
 The current regulator in grid-connected inverters aims to maintain the current injected to grid at quality levels accepted by standards such as IEEE 1547. One solution for designing such output-current regulators are controllers based on the internal model principle (IMP), which in case of grid-tied inverters yield to the multi-resonant and repetitive controllers.
 
-Consider a proportional-multiple-resonant (PMR) controller with transfer function
+Consider a closed-loop in the form
 
-$$C(s) = k_{e} +\sum_{i=1,3,\dots}^{h}\frac{k_{{2i-1}} +k_{{2i}}s}{s^{2} +2\xi_{i}\omega_{r_i} s +\omega_{r_i}^{2}}$$
+<div align="center">
+<img width="841" height="331" alt="current_regulator_closed_loop" src="https://github.com/user-attachments/assets/291c27af-4425-4eb3-9891-3c01ce1f8387" />
+</div>
+
+employing a proportional-multiple-resonant (PMR) controller with transfer function
+
+$$C(s) = \frac{u_v(s)}{e(s)} = k_{e} +\sum_{i=1,3,\dots}^{h}\frac{k_{{2i-1}} +k_{{2i}}s}{s^{2} +2\xi_{i}\omega_{r_i} s +\omega_{r_i}^{2}}$$
 
 where $k_{e}$, $k_{{2i-1}}$, and $k_{{2i}}$ are gains to be determined, $\xi_{i}$ is the damping factor of the $i$-th resonant mode and $\omega_{r_i}$ the $i$-th multiple of the fundamental frequency $\omega_0$.
 
-An appropriate design of $C(s)$, considering a sufficient number of resonant modes, results in grid-tied controllers allowing to perfectly follow a sinusoidal voltage reference and harmonic frequencies caused by the connection of non-linear loads.
+An appropriate design of $C(s)$, considering a sufficient number of resonant modes, results in grid-tied controllers allowing to perfectly follow a sinusoidal current reference and its harmonic frequencies when supplying non-linear loads.
+
+The control law shown can be rewritten as
+
+$$u(t) = Kx_{a}(t)$$
+
+where $x_{a}(t) = [x'(t)\ x_{r}'(t)]' \in \mathbb{R}^{3+2h}$ is the augmented state and
+
+$$K = [k_{c}\quad k_{v}\quad k_{g}\quad k_{1}\quad k_{2}\quad \cdots\quad k_{2h-1}\quad k_{2h}].$$
