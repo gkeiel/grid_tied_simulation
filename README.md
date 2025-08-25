@@ -33,6 +33,6 @@ The control law shown can be rewritten as
 
 $$u(t) = Kx_{a}(t)$$
 
-where $x_{a}(t) = [x'(t)\ x_{r}'(t)]' \in \mathbb{R}^{3+2h}$ is the augmented state and
+where $x_{a}(t) = [x'(t)\ x_{r}'(t)]' \in \mathbb{R}^{3+2h}$ is the augmented state where $x(t) = [i_L(t)\ v_c(t)\ i_o(t)]'$, $x_r(t)$ contains the resonant states and
 
 $$K = [k_{c}\quad k_{v}\quad k_{g}\quad k_{1}\quad k_{2}\quad \cdots\quad k_{2h-1}\quad k_{2h}].$$
